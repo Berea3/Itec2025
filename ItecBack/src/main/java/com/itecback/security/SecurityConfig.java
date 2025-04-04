@@ -1,0 +1,85 @@
+package com.itecback.security;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itecback.security.entities.User;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+import static org.springframework.security.config.Customizer.withDefaults;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+
+
+        httpSecurity.authorizeHttpRequests(config-> config
+                .anyRequest().permitAll());
+
+
+        httpSecurity.formLogin(form -> form.usernameParameter("username").passwordParameter("password").loginPage("/login")
+                .permitAll().successHandler(new AuthenticationSuccessHandler() {
+                    @Override
+                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
+                            throws IOException, ServletException { // Authentication success handler decides what to return if the login is successfull
+                        String json=authentication.getName();
+                        response.getWriter().write(json);
+                        response.setStatus(202);
+                    }
+                }).failureHandler(new AuthenticationFailureHandler() {
+                    @Override
+                    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+                        User user=new User();
+                        ObjectMapper mapper=new ObjectMapper();
+                        String json=mapper.writeValueAsString(user);
+                        response.setStatus(202);
+                        response.getWriter().write(json);
+                    }
+                }));
+
+        httpSecurity.logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(false).logoutUrl("/logout").permitAll());
+        httpSecurity.httpBasic(withDefaults());
+
+        httpSecurity.cors(cors -> cors.configurationSource(corsConfigurationSource()));
+        httpSecurity.csrf(csrf -> csrf.disable());
+
+        return httpSecurity.build();
+    }
+
+    @Autowired
+    private MyAuthenticationProvider authenticationProvider;
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource()
+    {
+        CorsConfiguration configuration=new CorsConfiguration();
+
+        configuration.addAllowedOriginPattern("*");
+
+        configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source=new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**",configuration);
+        return source;
+    }
+}

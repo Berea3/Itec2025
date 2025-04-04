@@ -38,4 +38,12 @@ public class EventsController {
     {
         return eventRepository.findAll();
     }
+
+    @PutMapping("/createCurricula/{eventId}")
+    public void createCurricula(@RequestBody String curricula, @PathVariable String eventId)
+    {
+        Event event=this.eventRepository.findById(eventId).get();
+        event.setCurricula(curricula);
+        this.eventRepository.save(event);
+    }
 }

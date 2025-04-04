@@ -1,1 +1,16 @@
-<p>header works!</p>
+<header class="navbar">
+    <button>Events</button>
+    <button>Theatres</button>
+    <button>Concerts</button>
+    <button>Movies</button>
+    <button>Sport events</button>
+    <button [routerLink]="['login']">Login</button>
+    <button  *ngIf="isLoggedIn()" routerLink="add-event">Add</button>
+    <!--    <span class="btn" routerLink="">Events</span>-->
+    <!--    <span class="btn">Theatres</span>-->
+    <!--    <span class="btn">Concerts</span>-->
+    <!--    <span class="btn">Movies</span>-->
+    <!--    <span class="btn">Sport events</span>-->
+    <!--    <span class="btn" [routerLink]="['login']">Login</span>-->
+    <!--    <span class="btn" *ngIf="isOrganizer()" routerLink="add-event">Add</span>-->
+</header>

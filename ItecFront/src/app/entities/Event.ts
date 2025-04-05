@@ -7,6 +7,9 @@ export class Event{
     curricula: string;
 
     date: Date;
+    organizerId: string;
+    chat: string;
+    aiSummary: string;
 
     users: User[]=[]
 }

@@ -1,0 +1,55 @@
+.event-container{
+    width: 99%;
+    height: 80vh;
+    background-color: red;
+    margin: auto;
+    margin-top: 1rem;
+}
+
+.curriculum-ai{
+    height: 40vh;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    align-content: start;
+    background-color: blue;
+}
+
+.curriculum{
+    height: 40vh;
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+}
+
+.textarea{
+    height: 80%;
+    width: 95%;
+    margin: 1vh auto;
+}
+
+.updateCurriculumButton{
+    width: fit-content;
+    margin: 1vh auto;
+}
+
+.ai-summarize{
+    overflow: scroll;
+}
+
+.section{
+    padding: 0.5rem;
+}
+
+.chat-users{
+    height: 40vh;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    align-content: start;
+    background-color: blue;
+}
+
+.chat{
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+}

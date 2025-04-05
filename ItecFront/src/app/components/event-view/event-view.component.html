@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="event-container">
+    <div class="curriculum-ai">
+<!--        <textarea [(ngModel)]="event.curricula" class="curriculum" rows="500"></textarea>-->
+        <div class="curriculum">
+            <textarea [(ngModel)]="event.curricula" class="textarea"></textarea>
+            <button class="updateCurriculumButton" *ngIf="isOrganizer()" (click)="updateCurriculum()">Update</button>
+        </div>
+        <div class="ai-summarize">
+            <h1>AI summary for the lesson</h1>
+            <p>{{event.aiSummary}}</p>
+        </div>
+    </div>
+
+    <div class="chat-users">
+        <div class="chat">
+            <textarea [(ngModel)]="event.chat" class="textarea"></textarea>
+            <div>
+                <label>Message</label>
+                <input name="message" placeholder="message" [(ngModel)]="message">
+                <button class="" (click)="sendMessage()">Send</button>
+            </div>
+        </div>
+        <div class="ai-summarize">
+            @for(user of eventUsers; track user){
+                <p>{{user.email}}</p>
+            }
+        </div>
+    </div>
+</div>

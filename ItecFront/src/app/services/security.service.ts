@@ -9,9 +9,9 @@ import {Auth} from '../entities/Auth';
 })
 export class SecurityService {
 
-    private user: User;
+    private user: User=new User();
     private auth: Auth;
-    private loggedIn: boolean=true;
+    private loggedIn: boolean=false;
 
     constructor(private http: HttpClient, private link: LinkService) {}
 
@@ -26,7 +26,9 @@ export class SecurityService {
 
     isLoggedIn()
     {
-        return this.loggedIn;
+        if (this.user.id!=null) return true;
+        return false;
+        // return this.loggedIn;
         // if (this.auth!=undefined) if (this.auth.loggedin!=null) return true;
         // return false;
     }
@@ -48,11 +50,22 @@ export class SecurityService {
         this.user=user;
     }
 
+    setLoggedIn()
+    {
+        this.loggedIn=true;
+    }
+
+    setLoggedOut()
+    {
+        this.loggedIn=false;
+    }
+
     checkLoggedIn()
     {
         this.http.get(this.link.url+"/security/loggedin").subscribe(
             (response: any)=>{
                 this.auth=response;
+                // if (this.auth.loggedin)
             }
         );
     }

@@ -3,6 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {LinkService} from '../../services/link.service';
 import {HeaderComponent} from '../header/header.component';
 import {Event} from '../../entities/Event'
+import {SecurityService} from '../../services/security.service';
+import {Router} from '@angular/router';
+import {User} from '../../entities/User';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +18,10 @@ import {Event} from '../../entities/Event'
 export class HomeComponent {
 
     events: Event[];
+    event: Event | undefined;
+    eventUsers: User[]=[];
 
-    constructor(private http: HttpClient, private link: LinkService) {}
+    constructor(private http: HttpClient, private link: LinkService, private securityService: SecurityService, private router: Router) {}
 
     ngOnInit()
     {
@@ -27,8 +32,35 @@ export class HomeComponent {
         )
     }
 
-    signUpToEvent()
+    signUpToEvent(eventId: string)
     {
-        this.http.
+        this.http.put(this.link.url+"/events/sign-up",eventId).subscribe();
+    }
+
+    openEvent(eventId: string)
+    {
+        this.http.get(this.link.url+"/events/getUsersByEventId/"+eventId).subscribe(
+            (response: any)=>{
+                this.eventUsers=response;
+                if (this.events.find(event=>event.id==eventId)!=undefined)
+                {
+                    this.event=this.events.find(event=>event.id==eventId);
+                    if (this.event!=undefined) {
+                        if (this.event.organizerId == this.securityService.getUser().id && this.securityService.getUser().id!=undefined)
+                        {
+                            console.log("first");
+                            console.log(this.event.organizerId);
+                            console.log(this.securityService.getUser().id);
+                            this.router.navigateByUrl("/event/" + eventId);
+                        }
+                    }
+                }
+                if (this.eventUsers.find(user=>user.id==this.securityService.getUser().id))
+                {
+                    console.log("bruh brah");
+                    this.router.navigateByUrl("/event/" + eventId);
+                }
+            }
+        )
     }
 }

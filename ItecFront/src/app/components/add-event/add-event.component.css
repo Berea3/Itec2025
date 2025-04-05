@@ -1,0 +1,17 @@
+.btn{
+    height: 3.5vh;
+    width: fit-content;
+    padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+    display: flex;
+    align-items: center;
+    border-radius: 0.3rem;
+    color: white;
+}
+
+.btn:hover{
+    cursor: pointer;
+}
+
+.save{
+    background-color: blue;
+}

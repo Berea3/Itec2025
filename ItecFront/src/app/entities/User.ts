@@ -1,7 +1,10 @@
+import {Event} from './Event';
+
 export class User{
-    id: number;
+    id: string;
 
-    email: String;
-    password: String;
+    email: string;
+    password: string;
 
+    events: Event[]=[];
 }

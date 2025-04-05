@@ -33,8 +33,8 @@ public class EventsController {
         return optionalEvent;
     }
 
-    @GetMapping("/getAll/{id}")
-    public List<Event> getAll(@PathVariable String id)
+    @GetMapping("/getAll")
+    public List<Event> getAll()
     {
         return eventRepository.findAll();
     }

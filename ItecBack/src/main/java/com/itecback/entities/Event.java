@@ -1,9 +1,11 @@
 package com.itecback.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.itecback.security.entities.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,13 +18,20 @@ public class Event {
     private String curricula;
     private LocalDate date;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
-            name="events_users",
-            joinColumns = @JoinColumn(name="event_id"),
-            inverseJoinColumns = @JoinColumn(name="user_id")
+            name = "events_users",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private List<User> users;
+
+    public void addUser(User user)
+    {
+        if (users==null) users=new ArrayList<>();
+        users.add(user);
+    }
 
     public Event() {
     }

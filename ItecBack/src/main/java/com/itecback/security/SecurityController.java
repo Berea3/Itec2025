@@ -41,19 +41,24 @@ public class SecurityController {
     }
 
     @PostMapping("/security/sign-up")
-    public String securitySignUp(@RequestBody User user)
+    public void securitySignUp(@RequestBody User user)
     {
-        if (!UserService.userExists(user.getEmail(),userRepository))
-        {
-            user.setId(Generator.generateId());
-            String salt=BCrypt.gensalt();
-            user.setPassword(BCrypt.hashpw(user.getPassword(),salt));
-            userRepository.save(user);
-            return "user added";
-        }
-        else
-        {
-            return "user already exists";
-        }
+        user.setId(Generator.generateId());
+        String salt=BCrypt.gensalt();
+        user.setPassword(BCrypt.hashpw(user.getPassword(),salt));
+        userRepository.save(user);
+
+//        if (!UserService.userExists(user.getEmail(),userRepository))
+//        {
+//            user.setId(Generator.generateId());
+//            String salt=BCrypt.gensalt();
+//            user.setPassword(BCrypt.hashpw(user.getPassword(),salt));
+//            userRepository.save(user);
+//            return "user added";
+//        }
+//        else
+//        {
+//            return "user already exists";
+//        }
     }
 }

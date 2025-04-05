@@ -1,0 +1,28 @@
+<input [(ngModel)]="this.event.name" name="name" placeholder="name">
+<mat-form-field appearance="outline" class="section">
+    <mat-label>Event date</mat-label>
+    <input matInput [matDatepicker]="picker1" (dateChange)="onChangeEventDate($any($event))">
+    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+
+<!--<mat-form-field>-->
+<!--    <mat-label>Choose a date</mat-label>-->
+<!--    <input matInput [matDatepicker]="picker">-->
+<!--    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--    <mat-datepicker #picker></mat-datepicker>-->
+<!--</mat-form-field>-->
+
+
+<!--<mat-form-field>-->
+<!--    <mat-label>Choose a date</mat-label>-->
+<!--    <input matInput [matDatepicker]="picker">-->
+<!--    <mat-hint>MM/DD/YYYY</mat-hint>-->
+<!--    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--    <mat-datepicker #picker></mat-datepicker>-->
+<!--</mat-form-field>-->
+
+<span class="btn save" (click)="onCreate()">
+    Add event
+            <mat-icon>add_circle</mat-icon>
+</span>

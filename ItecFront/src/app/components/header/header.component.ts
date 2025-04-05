@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {SecurityService} from '../../services/security.service';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-header',
     imports: [
-        RouterLink
+        RouterLink,
+        NgIf
     ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -14,13 +16,8 @@ export class HeaderComponent {
 
     constructor(private securityService: SecurityService) {}
 
-    isOrganizer()
+    isLoggedIn()
     {
-        if (this.securityService.getRole()=="organizer") return true;
-        console.log("not organizer");
-        console.log(this.securityService.getRole());
-        return false;
-        // if (sessionStorage.getItem("loggedin")=="yes") return true;
-        // else return false;
+        return this.securityService.isLoggedIn();
     }
 }

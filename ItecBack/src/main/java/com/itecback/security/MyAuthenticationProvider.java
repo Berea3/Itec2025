@@ -33,6 +33,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
         User user=userService.validateUser(email,password,userRepository);
         if (user!=null)       //return new UsernamePasswordAuthenticationToken(username,password,new ArrayList<>());
         {
+            user.setPassword("");
             ObjectMapper mapper=new ObjectMapper();
             try {
                 String json=mapper.writeValueAsString(user);

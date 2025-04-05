@@ -1,5 +1,6 @@
 package com.itecback.security.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.itecback.entities.Event;
 import jakarta.persistence.*;
 
@@ -16,14 +17,18 @@ public class User {
     private String email;
     private String password;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, mappedBy = "users")
-    private List<Event> event;
+    private List<Event> events;
 
-    public User(String id, String email, String password, List<Event> event) {
+    public User() {
+    }
+
+    public User(String id, String email, String password, List<Event> events) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.event = event;
+        this.events = events;
     }
 
 
@@ -39,8 +44,8 @@ public class User {
         return password;
     }
 
-    public List<Event> getEvent() {
-        return event;
+    public List<Event> getEvents() {
+        return events;
     }
 
 
@@ -56,7 +61,7 @@ public class User {
         this.password = password;
     }
 
-    public void setEvent(List<Event> event) {
-        this.event = event;
+    public void setEvent(List<Event> events) {
+        this.events = events;
     }
 }

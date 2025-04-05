@@ -1,1 +1,5 @@
-<p>sign-up works!</p>
+<form class="form">
+    <input [(ngModel)]="user.email" name="username">
+    <input [(ngModel)]="user.password" name="password">
+    <button (click)="onSignUp()">Sign up</button>
+</form>

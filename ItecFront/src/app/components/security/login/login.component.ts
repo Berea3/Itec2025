@@ -38,7 +38,7 @@ export class LoginComponent {
                 }
                 else
                 {
-                    // this.securityService.checkLoggedIn();
+                    this.securityService.checkLoggedIn();
                     this.securityService.setUser(this.user);
                     this.router.navigateByUrl("");
                 }

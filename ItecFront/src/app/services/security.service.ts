@@ -13,24 +13,32 @@ export class SecurityService {
     private auth: Auth;
     private loggedIn: boolean=false;
 
-    constructor(private http: HttpClient, private link: LinkService) {}
-
-    ngOnInit()
-    {
+    constructor(private http: HttpClient, private link: LinkService) {
+        console.log("relooooad");
         this.http.get(this.link.url+"/security/loggedin").subscribe(
             (response: any)=>{
                 this.auth=response;
+                if (this.auth.loggedin==true) this.loggedIn=true;
+                else this.loggedIn=false;
             }
         );
     }
 
+    // ngOnInit()
+    // {
+    //     console.log("relooooad");
+    //     this.http.get(this.link.url+"/security/loggedin").subscribe(
+    //         (response: any)=>{
+    //             this.auth=response;
+    //             if (this.auth.loggedin==true) this.loggedIn=true;
+    //             else this.loggedIn=false;
+    //         }
+    //     );
+    // }
+
     isLoggedIn()
     {
-        if (this.user.id!=null) return true;
-        return false;
-        // return this.loggedIn;
-        // if (this.auth!=undefined) if (this.auth.loggedin!=null) return true;
-        // return false;
+        return this.loggedIn;
     }
 
     getUser()
@@ -65,6 +73,7 @@ export class SecurityService {
         this.http.get(this.link.url+"/security/loggedin").subscribe(
             (response: any)=>{
                 this.auth=response;
+                this.loggedIn=this.auth.loggedin;
                 // if (this.auth.loggedin)
             }
         );

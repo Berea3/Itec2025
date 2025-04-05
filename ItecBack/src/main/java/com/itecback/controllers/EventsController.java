@@ -35,6 +35,7 @@ public class EventsController {
         ObjectMapper objectMapper=new ObjectMapper();
         event.setId(Generator.generateId());
         event.setOrganizerId(objectMapper.readValue(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString(),User.class).getId());
+        event.addUser(userRepository.findById(objectMapper.readValue(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString(),User.class).getId()).get());
         this.eventRepository.save(event);
     }
 
@@ -57,6 +58,13 @@ public class EventsController {
     public List<User> getUsersByEventId(@PathVariable String eventId)
     {
         return this.eventRepository.findById(eventId).get().getUsers();
+    }
+
+    @GetMapping("/getEventsByUser")
+    public List<Event> getEventsByUser() throws JsonProcessingException {
+        ObjectMapper objectMapper=new ObjectMapper();
+        User user=this.userRepository.findById(objectMapper.readValue(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString(),User.class).getId()).get();
+        return user.getEvents();
     }
 
 

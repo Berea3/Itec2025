@@ -1,0 +1,9 @@
+<app-header></app-header>
+<h1>Calendar:</h1>
+<!--<br>-->
+@for(event of events; track event)
+{
+    <div>
+        <p>{{event.name}}: &nbsp; {{event.date}}</p>
+    </div>
+}

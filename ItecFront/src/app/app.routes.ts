@@ -4,6 +4,7 @@ import {LoginComponent} from './components/security/login/login.component';
 import {SignUpComponent} from './components/security/sign-up/sign-up.component';
 import {AddEventComponent} from './components/add-event/add-event.component';
 import {EventViewComponent} from './components/event-view/event-view.component';
+import {CalendarComponent} from './components/calendar/calendar.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -11,4 +12,5 @@ export const routes: Routes = [
     { path: 'sign-up', component: SignUpComponent },
     { path: 'add-event', component: AddEventComponent },
     { path: 'event/:id', component: EventViewComponent },
+    { path: 'calendar', component: CalendarComponent },
 ];

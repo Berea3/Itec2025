@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {LinkService} from '../../services/link.service';
 import {HeaderComponent} from '../header/header.component';
+import {Event} from '../../entities/Event'
 
 @Component({
   selector: 'app-home',
@@ -24,5 +25,10 @@ export class HomeComponent {
                 this.events=response;
             }
         )
+    }
+
+    signUpToEvent()
+    {
+        this.http.
     }
 }

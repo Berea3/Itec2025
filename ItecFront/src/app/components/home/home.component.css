@@ -1,0 +1,16 @@
+.events-container{
+    width: 60%;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.event{
+    height: 5rem;
+    display: grid;
+    grid-template-columns: 20% 60% 2%;
+    align-content: start;
+}
+
+.section{
+    padding: 0.5rem;
+}

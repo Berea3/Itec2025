@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Signal, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
 import {Event} from '../../entities/Event';
@@ -23,6 +23,7 @@ export class EventViewComponent {
 
     event: Event;
     eventUsers: User[]=[];
+    eventUsersSignal=signal<User[]>([]);
     message: string;
 
     constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private link: LinkService, private securityService: SecurityService) {}
@@ -32,6 +33,18 @@ export class EventViewComponent {
         this.http.get(this.link.url+"/events/getById/"+this.activatedRoute.snapshot.params['id']).subscribe(
             (response: any)=>{
                 this.event=response;
+            }
+        )
+
+        this.http.get(this.link.url+"/events/getUsersByEventId/"+this.activatedRoute.snapshot.params['id']).subscribe(
+            (response: any)=>{
+                this.eventUsers=response;
+                for (let i=0;i<this.eventUsers.length;i++)
+                {
+                    this.eventUsersSignal.update(users=>[...users,this.eventUsers[i]]);
+                }
+                console.log(this.eventUsersSignal);
+                // this.eventUsersSignal.update(users=>[...users, this.eventUsers]);
             }
         )
 

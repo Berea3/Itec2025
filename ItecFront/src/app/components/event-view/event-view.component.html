@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="ai-summarize">
-            @for(user of eventUsers; track user){
+            @for(user of eventUsersSignal(); track user){
                 <p>{{user.email}}</p>
             }
         </div>

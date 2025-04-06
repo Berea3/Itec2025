@@ -28,6 +28,7 @@ export class HomeComponent {
         this.http.get(this.link.url+"/events/getAll").subscribe(
             (response: any)=>{
                 this.events=response;
+                if (this.securityService.isLoggedIn() && this.securityService.getUser().preference!=undefined) this.sortByPreference();
             }
         )
     }
@@ -62,5 +63,26 @@ export class HomeComponent {
                 }
             }
         )
+    }
+
+    sortByPreference()
+    {
+        let preference=this.securityService.getUser().preference;
+        let count: number=0;
+        for (let i: number=0;i<this.events.length;i++)
+        {
+            if (this.events[i].category===preference) if (count<2)
+            {
+                this.swapElements(count,i);
+                count++;
+            }
+        }
+    }
+
+    swapElements(i: number, j:number)
+    {
+        let temp=this.events[i];
+        this.events[i]=this.events[j];
+        this.events[j]=temp;
     }
 }

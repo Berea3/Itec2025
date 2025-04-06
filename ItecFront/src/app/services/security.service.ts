@@ -14,12 +14,18 @@ export class SecurityService {
     private loggedIn: boolean=false;
 
     constructor(private http: HttpClient, private link: LinkService) {
-        console.log("relooooad");
         this.http.get(this.link.url+"/security/loggedin").subscribe(
             (response: any)=>{
                 this.auth=response;
-                console.log(this.auth.loggedin);
-                if (this.auth.loggedin==true) this.loggedIn=true;
+                if (this.auth.loggedin==true)
+                {
+                    this.loggedIn=true;
+                    this.http.get(this.link.url+"/security/getUser").subscribe(
+                        (response: any)=>{
+                            this.user=response;
+                        }
+                    );
+                }
                 else this.loggedIn=false;
             }
         );

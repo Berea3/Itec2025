@@ -18,6 +18,7 @@ export class SecurityService {
         this.http.get(this.link.url+"/security/loggedin").subscribe(
             (response: any)=>{
                 this.auth=response;
+                console.log(this.auth.loggedin);
                 if (this.auth.loggedin==true) this.loggedIn=true;
                 else this.loggedIn=false;
             }

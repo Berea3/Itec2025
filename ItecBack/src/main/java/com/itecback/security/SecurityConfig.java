@@ -36,6 +36,7 @@ public class SecurityConfig {
 
 
         httpSecurity.authorizeHttpRequests(config-> config
+                .requestMatchers("/security/loggedin").authenticated()
                 .anyRequest().permitAll());
 
 

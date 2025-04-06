@@ -22,6 +22,7 @@ public class Event {
     private String chat;
     @Column(name="aiSummary", length=10000)
     private String aiSummary;
+    private String category;
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
@@ -41,7 +42,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(String id, String name, String curricula, LocalDate date, String organizerId, String chat, String aiSummary, List<User> users) {
+    public Event(String id, String name, String curricula, LocalDate date, String organizerId, String chat, String aiSummary, String category, List<User> users) {
         this.id = id;
         this.name = name;
         this.curricula = curricula;
@@ -49,6 +50,7 @@ public class Event {
         this.organizerId=organizerId;
         this.chat=chat;
         this.aiSummary=aiSummary;
+        this.category=category;
         this.users = users;
     }
 
@@ -78,6 +80,10 @@ public class Event {
 
     public String getAiSummary() {
         return aiSummary;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     public List<User> getUsers() {
@@ -111,6 +117,10 @@ public class Event {
 
     public void setAiSummary(String aiSummary) {
         this.aiSummary = aiSummary;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public void setUsers(List<User> users) {

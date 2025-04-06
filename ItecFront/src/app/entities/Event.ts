@@ -10,6 +10,7 @@ export class Event{
     organizerId: string;
     chat: string;
     aiSummary: string;
+    category: string;
 
     users: User[]=[]
 }

@@ -87,6 +87,7 @@ public class EventsController {
         User user=objectMapper.readValue(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString(),User.class);
         user=userRepository.findById(user.getId()).get();
         Event event=eventRepository.findById(eventId).get();
+        user.setPreference(event.getCategory());
         event.addUser(user);
         this.eventRepository.save(event);
         return user;

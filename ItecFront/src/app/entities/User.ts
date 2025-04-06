@@ -5,6 +5,7 @@ export class User{
 
     email: string;
     password: string;
+    preference: string;
 
     events: Event[]=[];
 }

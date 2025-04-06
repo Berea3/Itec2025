@@ -16,6 +16,7 @@ public class User {
 
     private String email;
     private String password;
+    private String preference;
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, mappedBy = "users")
@@ -24,10 +25,11 @@ public class User {
     public User() {
     }
 
-    public User(String id, String email, String password, List<Event> events) {
+    public User(String id, String email, String password, String preference, List<Event> events) {
         this.id = id;
         this.email = email;
         this.password = password;
+        this.preference=preference;
         this.events = events;
     }
 
@@ -42,6 +44,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getPreference() {
+        return preference;
     }
 
     public List<Event> getEvents() {
@@ -61,7 +67,11 @@ public class User {
         this.password = password;
     }
 
-    public void setEvent(List<Event> events) {
+    public void setPreference(String preference) {
+        this.preference = preference;
+    }
+
+    public void setEvents(List<Event> events) {
         this.events = events;
     }
 }

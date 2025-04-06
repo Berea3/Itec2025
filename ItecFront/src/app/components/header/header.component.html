@@ -1,7 +1,7 @@
 <header class="navbar">
     <button routerLink="">Events</button>
-    <button *ngIf="isLoggedIn()" routerLink="add-event">Add event</button>
-    <button [routerLink]="['/calendar']">Calendar</button>
+    <button *ngIf="isLoggedIn()" [routerLink]="['/add-event']">Add event</button>
+    <button *ngIf="isLoggedIn()" [routerLink]="['/calendar']">Calendar</button>
     <button [routerLink]="['/login']">Login</button>
-    <button  routerLink="sign-up">Sign up</button>
+    <button  [routerLink]="['sign-up']">Sign up</button>
 </header>

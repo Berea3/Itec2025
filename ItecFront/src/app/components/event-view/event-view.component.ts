@@ -64,6 +64,8 @@ export class EventViewComponent {
 
     sendMessage()
     {
+        this.event.chat=this.securityService.getUser().email+": "+this.message;
         this.http.put(this.link.url+"/events/send-message/"+this.event.id,this.message).subscribe();
+        this.message="";
     }
 }

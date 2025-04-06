@@ -1,7 +1,7 @@
 .event-container{
     width: 99%;
     height: 80vh;
-    background-color: red;
+    background-color: #bfbafc;
     margin: auto;
     margin-top: 1rem;
 }
@@ -11,18 +11,18 @@
     display: grid;
     grid-template-columns: 60% 40%;
     align-content: start;
-    background-color: blue;
+    /*background-color: blue;*/
 }
 
 .curriculum{
     height: 40vh;
-    background-color: yellow;
+    /*background-color: yellow;*/
     display: flex;
     flex-direction: column;
 }
 
 .textarea{
-    height: 80%;
+    height: 70%;
     width: 95%;
     margin: 1vh auto;
 }
@@ -34,6 +34,14 @@
 
 .ai-summarize{
     overflow: scroll;
+    border-left: solid black;
+    padding: 1rem;
+}
+
+.participants{
+    overflow: scroll;
+    border-left: solid black;
+    padding: 1rem;
 }
 
 .section{
@@ -45,7 +53,8 @@
     display: grid;
     grid-template-columns: 60% 40%;
     align-content: start;
-    background-color: blue;
+    /*background-color: blue;*/
+    border-top: solid black;
 }
 
 .chat{

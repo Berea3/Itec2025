@@ -1,4 +1,4 @@
-<input [(ngModel)]="this.event.name" name="name" placeholder="name">
+<input [(ngModel)]="this.event.name" name="name" placeholder="name" autocomplete="off">
 <mat-form-field appearance="outline" class="section">
     <mat-label>Event date</mat-label>
     <input matInput [matDatepicker]="picker1" (dateChange)="onChangeEventDate($any($event))">
@@ -6,19 +6,19 @@
     <mat-datepicker #picker1></mat-datepicker>
 </mat-form-field>
 
-<select>
-    <option>history</option>
-    <option>geography</option>
-    <option>english</option>
-    <option>math</option>
-    <option>computer science</option>
-    <option>german</option>
-    <option>physics</option>
-    <option>chemistry</option>
-    <option>biology</option>
-    <option>sports</option>
-    <option>art</option>
-    <option>robotics</option>
+<select [(ngModel)]="event.category">
+    <option value="history">history</option>
+    <option value="geography">geography</option>
+    <option value="english">english</option>
+    <option value="math">math</option>
+    <option value="computer science">computer science</option>
+    <option value="german">german</option>
+    <option value="physics">physics</option>
+    <option value="chemistry">chemistry</option>
+    <option value="biology">biology</option>
+    <option value="sports">sports</option>
+    <option value="art">art</option>
+    <option value="robotics">robotics</option>
 </select>
 
 <span class="btn save" (click)="onCreate()">

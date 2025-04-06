@@ -67,11 +67,12 @@ export class HomeComponent {
 
     sortByPreference()
     {
+        console.log("sa moara");
         let preference=this.securityService.getUser().preference;
         let count: number=0;
         for (let i: number=0;i<this.events.length;i++)
         {
-            if (this.events[i].category===preference) if (count<2)
+            if (this.events[i].category===preference) if (count<3)
             {
                 this.swapElements(count,i);
                 count++;

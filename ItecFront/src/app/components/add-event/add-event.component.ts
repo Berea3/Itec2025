@@ -12,12 +12,13 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import {FormsModule} from '@angular/forms';
 import {MatIcon} from '@angular/material/icon';
 import {MatTooltip} from '@angular/material/tooltip';
+import {HeaderComponent} from '../header/header.component';
 
 
 @Component({
   selector: 'app-add-event',
     imports: [
-        MatDatepickerModule, MatInputModule, MatFormFieldModule, FormsModule, MatIcon
+        MatDatepickerModule, MatInputModule, MatFormFieldModule, FormsModule, MatIcon, HeaderComponent
     ],
   templateUrl: './add-event.component.html',
   styleUrl: './add-event.component.css'

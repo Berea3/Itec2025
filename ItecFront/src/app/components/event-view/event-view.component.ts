@@ -21,7 +21,7 @@ import {User} from '../../entities/User';
 })
 export class EventViewComponent {
 
-    event: Event;
+    event: Event=new Event();
     eventUsers: User[]=[];
     eventUsersSignal=signal<User[]>([]);
     message: string;

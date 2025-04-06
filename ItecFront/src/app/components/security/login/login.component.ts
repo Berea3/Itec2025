@@ -5,11 +5,17 @@ import {SecurityService} from '../../../services/security.service';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../../../entities/User';
+import {HeaderComponent} from "../../header/header.component";
+import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 
 @Component({
   selector: 'app-login',
     imports: [
-        FormsModule
+        FormsModule,
+        HeaderComponent,
+        MatFormField,
+        MatLabel,
+        MatInput
     ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'

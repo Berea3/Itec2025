@@ -1,8 +1,26 @@
-<div class="page">
+<app-header></app-header>
+<!--<div class="page">-->
+<!--    <div class="form">-->
+<!--        <span id="title">Log in</span>-->
+<!--        <input [(ngModel)]="email" name="username" placeholder="username" autocomplete="off">-->
+<!--        <input [(ngModel)]="password" name="password" placeholder="password" type="password">-->
+<!--        <button (click)="onSubmit()">Login</button>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<div class="cont">
     <div class="form">
-        <span id="title">Log in</span>
-        <input [(ngModel)]="email" name="username" placeholder="username" autocomplete="off">
-        <input [(ngModel)]="password" name="password" placeholder="password" type="password">
-        <button (click)="onSubmit()">Login</button>
+        <h1 class="title">Login</h1>
+        <mat-form-field appearance="outline" class="projectInfo">
+            <mat-label>username</mat-label>
+            <input matInput [(ngModel)]="email" name="email" autocomplete="off">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="projectInfo">
+            <mat-label>password</mat-label>
+            <input matInput [(ngModel)]="password" name="password" type="password">
+        </mat-form-field>
+        <!--    <button (click)="onSubmit()">Log in</button>-->
+        <button class="btn" (click)="onSubmit()">Log in</button>
     </div>
 </div>

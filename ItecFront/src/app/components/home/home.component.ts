@@ -58,7 +58,6 @@ export class HomeComponent {
                 }
                 if (this.eventUsers.find(user=>user.id==this.securityService.getUser().id))
                 {
-                    console.log("bruh brah");
                     this.router.navigateByUrl("/event/" + eventId);
                 }
             }
@@ -67,7 +66,6 @@ export class HomeComponent {
 
     sortByPreference()
     {
-        console.log("sa moara");
         let preference=this.securityService.getUser().preference;
         let count: number=0;
         for (let i: number=0;i<this.events.length;i++)
